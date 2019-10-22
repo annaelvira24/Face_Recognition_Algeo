@@ -1,6 +1,19 @@
 from gmpy2 import *
 import numpy as np
 
+def EuclideanDist (u,v):
+	distSquare = 0
+	dist = 0
+	for i in range (len(u)):
+		distSquare += (u[i]-v[i])**2
+		dist		= (distSquare)**(0.5)
+	return dist
+
+u = [-1,2,3]
+v = [4,0,-3]
+print(EuclideanDist(u,v))
+
+
 def scalar(u):
 	sqrscalar = 0
 	for i in range(len(u)):
