@@ -6,13 +6,14 @@ def EuclideanDist (u,v):
 	dist = 0
 	for i in range (len(u)):
 		distSquare += (u[i]-v[i])**2
-		dist		= (distSquare)**(0.5)
+		dist		= sqrt(distSquare)
 	return dist
 
-u = [-1,2,3]
-v = [4,0,-3]
-print(EuclideanDist(u,v))
-
+def MatEuclidean (M1,M2):
+	M = []
+	for i in range(len(M1)):
+		M.append(EuclideanDist(M1[i],M2))
+	return np.array(M)
 
 def scalar(u):
 	sqrscalar = 0

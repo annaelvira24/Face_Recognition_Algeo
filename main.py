@@ -28,6 +28,7 @@ def extract(image_path, vsize=100):
 		dsc = np.concatenate([dsc, np.zeros(needed_size - dsc.size)])
 	return dsc
 
+
 def createDB(images_path, db_path="features.pck"):
 	result = {}
 	for f in files:
