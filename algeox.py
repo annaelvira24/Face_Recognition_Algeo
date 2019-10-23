@@ -1,8 +1,18 @@
 from gmpy2 import *
 import numpy as np
 
-# Inisiasi precision
-get_context().precision = 100
+def EuclideanDist (u,v):
+	distSquare = 0
+	dist = 0
+	for i in range (len(u)):
+		distSquare += (u[i]-v[i])**2
+		dist		= (distSquare)**(0.5)
+	return dist
+
+u = [-1,2,3]
+v = [4,0,-3]
+print(EuclideanDist(u,v))
+
 
 def scalar(u):
 	sqrscalar = 0
@@ -20,5 +30,8 @@ def CosineSimilarity(u, v):
 def CosineSimilarityMat(M1, M2):
 	M = []
 	for i in range(len(M1)):
-		M.append(1-CosineSimilarity(M1[i],M2[0]))
+		arr = []
+		for j in range(len(M2)):
+			arr.append(1-CosineSimilarity(M1[i],M2[j]))
+		M.append(arr)
 	return np.array(M)

@@ -1,80 +1,72 @@
 from gmpy2 import *
-from algeo import *
+from matcher import *
 import numpy as np
-import matplotlib.pyplot as plt
 import cv2
-import scipy
-import _pickle as pickle
 import random
-import os
-
-# Variable Global
-images_path = 'TEST/'
-files = [os.path.join(images_path, p) for p in sorted(os.listdir(images_path))]
 
 # Inisiasi precision
-get_context().precision = 1000
+get_context().precision = 100
 
-def extract(image_path, vsize=100):
-	img = cv2.imread(image_path, 0)
-	img = img[int(len(img)*0.1):int(len(img)*0.9), int(len(img[0])*0.1):int(len(img[0])*0.9)]
-	kaze = cv2.KAZE_create()
-	kps = kaze.detect(img)
-	kps = sorted(kps, key=lambda x: -x.response)[:vsize]
-	kps, dsc = kaze.compute(img, kps)
-	dsc = dsc.flatten('K')
-	needed_size = (vsize * 64)
-	if dsc.size < needed_size:
-		dsc = np.concatenate([dsc, np.zeros(needed_size - dsc.size)])
-	return dsc
+# Variable Global
+matcherDB = []
+db_dir = 'DB/'
 
-def createDB(images_path, db_path="features.pck"):
-	result = {}
-	for f in files:
-		name = f.split('/')[-1].lower()
-		result[name] = extract(f)
-	pickle.dump(result, open(db_path, 'wb'))
-
-
-class Matcher(object):
-	def __init__(self, db_path="features.pck"):
-		self.data = pickle.load(open(db_path, "rb"))
-		self.names, self.db = map(np.array, zip(*self.data.items()))
-
-	def cosineSim(self, vector):
-		v = vector.reshape(1, -1)
-		return CosineSimilarityMat(self.db, v).reshape(-1)
-
-	def match(self, image_path, topn=5):
-		features = extract(image_path)
-		img_distances = self.cosineSim(features)
-		# getting top 5 records
-		nearest_ids = np.argsort(img_distances)[:topn].tolist()
-		nearest_img_paths = self.names[nearest_ids].tolist()
-		return nearest_img_paths, img_distances[nearest_ids].tolist()
-
+'''
+ma = Matcher('features.pck')
+names, match = ma.matchCosine(files[0])
+'''
 def show_img(path):
-	img = cv2.imread(path, 0)
+	img = cv2.imread(path, 1)
 	cv2.imshow('IMAGE', img)
 	cv2.waitKey(0)
-   
+
+def createMatcherDB():
+	for i in range(len(dirs)):
+		matcherDB.append(Matcher(dirs[i],db_dir+dirs[i].split("/")[1].split(".")[0]+'.pck'))
+
+def main():
+	createMatcherDB()
+	sample = ['TEST/test1.jpg','TEST/test3.jpg','TEST/test2.jpg','TEST/test4.jpg','TEST/test6.jpg','TEST/test5.jpg']
+	for s in sample[0:3]:
+		print("Sample Image")
+		show_img(s)
+		print("Sorting Time")
+		names, match = np.concatenate([matcherDB[i].matchCosine(s)[0] for i in range(len(matcherDB))], axis=None), np.concatenate([matcherDB[i].matchCosine(s)[1] for i in range(len(matcherDB))], axis=None)
+		sortidx = np.argsort(match)
+		names = names[sortidx]
+		match = match[sortidx]
+		print("*DONE*")
+		for i in range(3):
+			print('Match %s' % (1-match[i]))
+			show_img(names[i])
+
+main()
+'''
 def run():
     # getting 3 random images 
-    sample = [files[8],files[4]]
-    
-    createDB(images_path)
-
-    ma = Matcher('features.pck')
+    sample = ['TEST/huhu.jpg']
+    p1 = Matcher('1/','1.pck')
+    p2 = Matcher('2/','2.pck')
     
     for s in sample:
         print('Query image ==========================================')
         show_img(s)
-        names, match = ma.match(s, topn=5)
+        names, match = np.concatenate((p1.matchCosine(s)[0],p2.matchCosine(s)[0]), axis=None), np.concatenate((p1.matchCosine(s)[1],p2.matchCosine(s)[1]), axis=None)
+        #print(match)
+        #match = np.array(map(mpfr,match))
+        print(len(match))
+        sortidx = np.argsort(match)
+        names = names[sortidx]
+        match = match[sortidx]
         print('Result images ========================================')
         for i in range(5):
             # we got cosine distance, less cosine distance between vectors
             # more they similar, thus we subtruct it from 1 to get match value
             print('Match %s' % (1-match[i]))
-            show_img(os.path.join(images_path, names[i]))
+            try:
+                show_img(os.path.join('1/', names[i]))
+            except:
+                show_img(os.path.join('2/', names[i]))
 
 run()
+'''
