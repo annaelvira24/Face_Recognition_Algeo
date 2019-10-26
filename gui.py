@@ -17,6 +17,7 @@ from kivy.uix.textinput import TextInput
 
 # Window.size = (700,550)
 sm= ScreenManager()
+#Window.clearcolor = (1, 1, 1, 1)
 
 class MyApp (App):
     def build(self):
