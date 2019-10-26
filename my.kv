@@ -14,7 +14,7 @@
             text : "Quit"
             size_hint:(0.25,0.10)
             pos: (300,100)
-            on_press: root.manager.current='quit'
+            on_press: app.Exit()
 
 <CreditPage>:
     FloatLayout:
@@ -42,6 +42,8 @@
             on_press: root.manager.current='landing'
 
 <StartPage>:
+    ##filename di kiri untuk diakses di main : filename di kanan sesuai dengan id
+    filename : filename
     FloatLayout:
         Label:
             text:"Upload the photo"
@@ -51,14 +53,20 @@
         TextInput:
             pos_hint: {"x":0.3, "top":0.6}
             size_hint: 0.4, 0.05
-            # id: 
+            id: filename 
             # multiline: False
             hint_text:"filename.jpg/.png"
         Button:
+            text:"Back"
+            pos_hint: {"x":0.25,"top":0.3}
+            size_hint: 0.20,0.10
+            on_press: root.manager.current='landing'
+        Button:
             text:"Upload"
-            pos_hint: {"x":0.4, "top":0.3}
+            pos_hint: {"x":0.55, "top":0.3}
             size_hint: 0.20, 0.10
-            
+            on_press: root.manager.current='landing'
+        
 
 
 

@@ -14,8 +14,9 @@ from kivy.uix.floatlayout import FloatLayout
 from kivy.core.window import Window
 from kivy.uix.screenmanager import Screen,ScreenManager
 from kivy.uix.textinput import TextInput
-from kivy.graphics import Rectangle
-from kivy.graphics import Color
+# import main.py
+# from kivy.graphics import Rectangle
+# from kivy.graphics import Color
 
 # Window.size = (700,550)
 sm= ScreenManager()
@@ -25,9 +26,8 @@ class MyApp (App):
         sm.add_widget(LandingPage(name="landing"))
         sm.add_widget(CreditPage(name="credits"))
         sm.add_widget(StartPage(name="start"))
-        sm.add_widget(QuitPage(name="quit"))
         sm.add_widget(ResultPage(name="result"))
-        print(sm.screen_names)
+        # print(sm.screen_names)
         return sm       
 
 class LandingPage(Screen):
@@ -41,8 +41,8 @@ class CreditPage(Screen):
         global sm
         sm.current="credits"    
 
-class QuitPage(Screen):
-    pass
+# class QuitPage(Screen):
+#     pass
 
 class ResultPage(Screen):
     pass
