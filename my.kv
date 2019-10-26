@@ -19,24 +19,52 @@
 <CreditPage>:
     FloatLayout:
         Label:
+            text:"Credits By :"
+            pos_hint: {"x":0.3, "top":0.9}
+            size_hint: 0.4, 0.2
+            font_size: 30
+        Label:
             text:"Anna Elvira"
-            pos: (300,300)
+            pos_hint: {"x":0.3, "top":0.7}
+            size_hint: 0.35, 0.10
         Label: 
             text:"Yonatan Viody"
-            pos: (300,200)
+            pos_hint: {"x":0.3,"top":0.6}
+            size_hint: 0.35, 0.10
         Label:
             text:"Stephen Thajeb"
-            pos: (300,100)
+            pos_hint: {"x":0.3,"top":0.5}
+            size_hint: 0.35, 0.10
         Button:
             text:"Back"
+            pos_hint: {"x":0.1,"top":0.2}
+            size_hint: 0.35,0.15
+            on_press: root.manager.current='landing'
 
 <StartPage>:
-    BoxLayout:
-        orientation:"vertical"
+    FloatLayout:
         Label:
             text:"Upload the photo"
-            pos: (300,300)
-            orientation:"vertical"
-            TextInput:   
+            pos_hint: {"x":0.3, "top":0.7}
+            size_hint: 0.4, 0.05
+            font_size: 20
+        TextInput:
+            pos_hint: {"x":0.3, "top":0.6}
+            size_hint: 0.4, 0.05
+            # id: 
+            # multiline: False
+            hint_text:"filename.jpg/.png"
+        Button:
+            text:"Upload"
+            pos_hint: {"x":0.4, "top":0.3}
+            size_hint: 0.20, 0.10
+            
+
+
+
+                
+
+                     
+
                         
     
