@@ -1,6 +1,3 @@
-import os
-os.environ['KIVY_IMAGE'] = 'pil,sd12' 
-
 import kivy
 from kivy.app import App
 from kivy.uix.label import Label
