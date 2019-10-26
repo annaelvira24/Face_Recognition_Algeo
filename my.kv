@@ -1,0 +1,42 @@
+<LandingPage>
+    FloatLayout:
+        Button:
+            text: "Getting Started"
+            size_hint:(0.25,0.10)
+            pos: (300,300)
+            on_press: root.manager.current='start'
+        Button: 
+            text: "Credits"
+            size_hint:(0.25,0.10)
+            pos: (300,200)
+            on_press: root.manager.current='credits'
+        Button:
+            text : "Quit"
+            size_hint:(0.25,0.10)
+            pos: (300,100)
+            on_press: root.manager.current='quit'
+
+<CreditPage>:
+    FloatLayout:
+        Label:
+            text:"Anna Elvira"
+            pos: (300,300)
+        Label: 
+            text:"Yonatan Viody"
+            pos: (300,200)
+        Label:
+            text:"Stephen Thajeb"
+            pos: (300,100)
+        Button:
+            text:"Back"
+
+<StartPage>:
+    BoxLayout:
+        orientation:"vertical"
+        Label:
+            text:"Upload the photo"
+            pos: (300,300)
+            orientation:"vertical"
+            TextInput:   
+                        
+    
