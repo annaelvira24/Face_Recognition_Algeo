@@ -8,7 +8,6 @@ import random
 get_context().precision = 100
 
 # Variable Global
-matcherDB = []
 db_dir = 'DB/'
 
 '''
@@ -20,21 +19,14 @@ def show_img(path):
 	cv2.imshow('IMAGE', img)
 	cv2.waitKey(0)
 
-def createMatcherDB():
-	for i in range(len(dirs)):
-		matcherDB.append(Matcher(dirs[i],db_dir+dirs[i].split("/")[1].split(".")[0]+'.pck'))
-
 def main():
-	createMatcherDB()
-	sample = ['TEST/test1.jpg','TEST/test3.jpg','TEST/test2.jpg','TEST/test4.jpg','TEST/test6.jpg','TEST/test5.jpg']
-	for s in sample[0:3]:
+	matcher = Matcher('HUHU/1/', 'DB/TC2.pck')
+	sample = ['TEST/test1.jpg','TEST/huhu.jpg','TEST/test2.jpg','TEST/test4.jpg','TEST/test6.jpg','TEST/test5.jpg']
+	for s in sample[:2]:
 		print("Sample Image")
 		show_img(s)
 		print("Sorting Time")
-		names, match = np.concatenate([matcherDB[i].matchCosine(s)[0] for i in range(len(matcherDB))], axis=None), np.concatenate([matcherDB[i].matchCosine(s)[1] for i in range(len(matcherDB))], axis=None)
-		sortidx = np.argsort(match)
-		names = names[sortidx]
-		match = match[sortidx]
+		names, match = matcher.matchCosine(s)
 		print("*DONE*")
 		for i in range(3):
 			print('Match %s' % (1-match[i]))

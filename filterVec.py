@@ -8,4 +8,10 @@ files = [os.path.join(dirs[i], os.listdir(dirs[i])[0]) for i in range(len(dirs))
 for i in range(len(files)):
 	open("TC/test"+str(i)+".jpg","wb").write(open(files[i],"rb").read())
 d = Differ('TC/','huhu.pck')
-d.findUselessVector()
+d2 = Differ('TC2/','huhu.pck')
+d.findUselessVector(1)
+d2.findUselessVector(2)
+with open("res3.txt","w") as f:
+	for i in d.uniqueVector:
+		if not(i in d2.uniqueVector[:500]):
+			f.write(i+",\n")

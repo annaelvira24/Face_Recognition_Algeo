@@ -31,7 +31,7 @@ class Differ(object):
 		v = vector.reshape(1, -1)
 		return CosineSimilarityMat(self.db, v).reshape(-1)
 
-	def findUselessVector(self):
+	def findUselessVector(self, id=1):
 		for i in range(len(self.db[0])):
 			tc = self.db[0][i]
 			val = 0
@@ -41,10 +41,10 @@ class Differ(object):
 				arr.append(self.db[j][i])
 			val = div(val,len(arr))/(max(arr)*min(arr))
 			self.uniqueVector.append([i,val])
-		with open("res.txt","w") as f:
+		with open("res"+str(id)+".txt","w") as f:
 			for i in self.uniqueVector:
 				f.write(str(i)+",\n")
-		self.uniqueVector = list(zip(*sorted(self.uniqueVector,key=lambda x: abs(1-x[1]))))
+		self.uniqueVector = list(zip(*sorted(self.uniqueVector,key=lambda x: x[1])))
 
 	def matchCosine(self, image_path):
 		features = extract(image_path)

@@ -4,21 +4,14 @@ import numpy as np
 # Inisiasi precision
 get_context().precision = 100
 
-def scalar(u):
-	sqrscalar = 0
-	for i in range(len(u)):
-		sqrscalar += pow(u[i],2)
-	return sqrt(sqrscalar)
+def normEuclidean(M, v):
+	res = []
+	for i in range(len(M)):
+		res.append(np.norm(M[i]-v))
+	return np.array(res)
 
-def CosineSimilarity(u, v):
-	dotProduct = 0
-	assert(len(u)==len(v))
-	for i in range(len(u)):
-		dotProduct += u[i]*v[i]
-	return div(dotProduct,mul(scalar(u),scalar(v)))
-
-def CosineSimilarityMat(M1, M2):
-	M = []
-	for i in range(len(M1)):
-		M.append(1-CosineSimilarity(M1[i],M2[0]))
-	return np.array(M)
+def cosineSimilarity(M, v):
+	res = []
+	for i in range(len(M)):
+		res.append(1-((np.dot(M[i],v)/(np.linalg.norm(M[i])*np.linalg.norm(v)))))
+	return np.array(res)
