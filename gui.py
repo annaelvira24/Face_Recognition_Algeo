@@ -1,6 +1,3 @@
-import os
-os.environ['KIVY_IMAGE'] = 'pil,sd12' 
-
 import kivy
 from kivy.app import App
 from kivy.uix.label import Label
@@ -20,6 +17,7 @@ import main
 
 # Window.size = (700,550)
 sm= ScreenManager()
+#Window.clearcolor = (1, 1, 1, 1)
 
 class MyApp (App):
     def build(self):
