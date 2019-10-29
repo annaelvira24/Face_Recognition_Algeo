@@ -25,10 +25,10 @@ def run(sample):
     return names[1]
 
 def main():
-	matcher = Matcher('DATA/DATASETS/', 'DB/real5.pck')
+	matcher = Matcher('DATA/DATASETS/', 'DB/real6.pck')
 	#sample = ['TEST/test1.jpg','TEST/huhu.jpg','TEST/test2.jpg','TEST/test4.jpg','TEST/test6.jpg','TEST/test5.jpg']
 	benar = 0
-	for i in range(5):
+	for i in range(100):
 		sample = [random.choice(matcher.names) for i in range(1)]
 		for s in sample:
 			print("Sample Image")

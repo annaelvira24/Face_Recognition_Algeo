@@ -12,7 +12,7 @@ from kivy.core.window import Window
 from kivy.uix.screenmanager import *
 from kivy.uix.textinput import TextInput
 from kivy.uix.image import Image
-from Tkinter import Tk
+from tkinter import Tk
 from tkinter.filedialog import askopenfilename
 import main
 # from kivy.graphics import Rectangle
@@ -40,7 +40,7 @@ class StartPage(Screen):
 	def runMain(self):
 		Tk().withdraw() # we don't want a full GUI, so keep the root window from appearing
 		filename = askopenfilename()
-		resultimg = main.run()
+		resultimg = main.run(filename)
 		self.ids.real.source = filename
 		self.ids.compared.source = resultimg
 

@@ -86,10 +86,10 @@ def extract(image_path, vsize=8):
 	#img =cv2.resize(img, (img.shape[0], img.shape[1]))
 	kaze = cv2.KAZE_create()
 	kps = kaze.detect(img)
-	kps_temp = sorted(kps, key=lambda x: abs(x.response))[:vsize//3]
+	kps_temp = sorted(kps, key=lambda x: abs(x.response))[:vsize//2]
 	dsc = kaze.compute(img, kps_temp)[1]
 	kps_temp = sorted(kps, key=lambda x: x.size)[:len(kps)//2]
-	kps_temp = sorted(kps_temp, key=lambda x: abs(x.response))[:vsize//3]
+	kps_temp = sorted(kps_temp, key=lambda x: abs(x.response))[:vsize//2]
 	dsc2 = kaze.compute(img, kps_temp)[1]
 	kps_temp = sorted(kps, key=lambda x: x.angle)[:vsize//2]
 	#kps_temp = sorted(kps_temp, key=lambda x: abs(x.response))[:vsize//3]
@@ -102,10 +102,10 @@ def extract(image_path, vsize=8):
 	#img = cv2.GaussianBlur(img, (5,5), 0)
 	#img =cv2.resize(img, (img.shape[0], img.shape[1]))
 	kps = kaze.detect(img)
-	kps_temp = sorted(kps, key=lambda x: abs(x.response))[:vsize//3]
+	kps_temp = sorted(kps, key=lambda x: abs(x.response))[:vsize//2]
 	dsc2 = kaze.compute(img, kps_temp)[1]
 	kps_temp = sorted(kps, key=lambda x: x.size)[:len(kps)//2]
-	kps_temp = sorted(kps_temp, key=lambda x: abs(x.response))[:vsize//3]
+	kps_temp = sorted(kps_temp, key=lambda x: abs(x.response))[:vsize//2]
 	dsc3 = kaze.compute(img, kps_temp)[1]
 	kps_temp = sorted(kps, key=lambda x: x.angle)[:vsize//2]
 	#kps_temp = sorted(kps_temp, key=lambda x: abs(x.response))[:vsize//3]
