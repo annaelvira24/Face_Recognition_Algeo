@@ -78,4 +78,4 @@ def run():
             print('Match %s' % (1-match[i]))
             show_img(os.path.join(images_path, names[i]))
 
-run()
+# run()
