@@ -77,22 +77,52 @@ class Matcher(object):
 		sortidx = np.argsort(distanceRange)
 		return self.names[sortidx], distanceRange[sortidx]
 
-def extract(image_path, vsize=32):
-	img = cv2.imread(image_path, 0)
-	#if (cv2.countNonZero(cv2.imread(image_path, 0)) < int(img.size*0.8)):
+def extract(image_path, vsize=8):
+	#RGB
+	img = cv2.imread(image_path, 1)
+	#if (cv2.countNonZero(cv2.imread(image_path, 0)) < int(img.size*0.7)):
 	#	img = img[int(len(img)*0.05):int(len(img)*0.95), int(len(img[0])*0.05):int(len(img[0])*0.95)]
 	#img = cv2.GaussianBlur(img, (5,5), 0)
 	#img =cv2.resize(img, (img.shape[0], img.shape[1]))
 	kaze = cv2.KAZE_create()
 	kps = kaze.detect(img)
-	kps_temp = sorted(kps, key=lambda x: -x.response)[:vsize//2]
+	kps_temp = sorted(kps, key=lambda x: abs(x.response))[:vsize//3]
 	dsc = kaze.compute(img, kps_temp)[1]
 	kps_temp = sorted(kps, key=lambda x: x.size)[:len(kps)//2]
-	kps_temp = sorted(kps_temp, key=lambda x: -x.response)[:vsize//2]
+	kps_temp = sorted(kps_temp, key=lambda x: abs(x.response))[:vsize//3]
 	dsc2 = kaze.compute(img, kps_temp)[1]
-	dsc = np.concatenate([dsc.flatten('C'),dsc2.flatten('C')], axis=None)
-	#dsc = dsc.flatten('K')
-	needed_size = (vsize * 64)
+	kps_temp = sorted(kps, key=lambda x: x.angle)[::-1][:vsize//2]
+	#kps_temp = sorted(kps_temp, key=lambda x: abs(x.response))[:vsize//3]
+	dsc3 = kaze.compute(img, kps_temp)[1]
+	dsc = np.concatenate([dsc.flatten('C'),dsc2.flatten('C'),dsc3.flatten('C')], axis=None)
+	#Grayscale
+	img = cv2.imread(image_path, 0)
+	#if (cv2.countNonZero(cv2.imread(image_path, 0)) < int(img.size*0.7)):
+	#	img = img[int(len(img)*0.05):int(len(img)*0.95), int(len(img[0])*0.05):int(len(img[0])*0.95)]
+	#img = cv2.GaussianBlur(img, (5,5), 0)
+	#img =cv2.resize(img, (img.shape[0], img.shape[1]))
+	kps = kaze.detect(img)
+	kps_temp = sorted(kps, key=lambda x: abs(x.response))[:vsize//3]
+	dsc2 = kaze.compute(img, kps_temp)[1]
+	kps_temp = sorted(kps, key=lambda x: x.size)[:len(kps)//2]
+	kps_temp = sorted(kps_temp, key=lambda x: abs(x.response))[:vsize//3]
+	dsc3 = kaze.compute(img, kps_temp)[1]
+	kps_temp = sorted(kps, key=lambda x: x.angle)[::-1][:vsize//2]
+	#kps_temp = sorted(kps_temp, key=lambda x: abs(x.response))[:vsize//3]
+	dsc4 = kaze.compute(img, kps_temp)[1]
+	dsc2 = np.concatenate([dsc,dsc2.flatten('C'),dsc3.flatten('C'),dsc4.flatten('C')], axis=None)
+	'''
+	kaze = cv2.KAZE_create()
+	kps = kaze.detect(img)
+	kps_temp = sorted(kps, key=lambda x: abs(x.response))[:vsize]
+	dsc = kaze.compute(img, kps_temp)[1]
+	kps = kaze.detect(img)
+	kps_temp = sorted(kps, key=lambda x: abs(x.response))[:vsize]
+	img = cv2.imread(image_path, 0)
+	dsc2 = kaze.compute(img, kps_temp)[1]
+	'''
+	#dsc = np.concatenate([dsc.flatten('K'),dsc2.flatten('K')],axis=None)
+	needed_size = (vsize * 2 * 64)
 	if dsc.size < needed_size:
 		dsc = np.concatenate([dsc, np.zeros(needed_size - dsc.size)])
 	return dsc

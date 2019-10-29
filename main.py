@@ -20,8 +20,9 @@ def show_img(path):
 	cv2.waitKey(0)
 
 def main():
-	matcher = Matcher('HUHU/1/', 'DB/TC2.pck')
-	sample = ['TEST/test1.jpg','TEST/huhu.jpg','TEST/test2.jpg','TEST/test4.jpg','TEST/test6.jpg','TEST/test5.jpg']
+	matcher = Matcher('HUHU/1/', 'DB/temp1.pck')
+	#sample = ['TEST/test1.jpg','TEST/huhu.jpg','TEST/test2.jpg','TEST/test4.jpg','TEST/test6.jpg','TEST/test5.jpg']
+	sample = [random.choice(matcher.names) for i in range(3)]
 	for s in sample[:2]:
 		print("Sample Image")
 		show_img(s)
