@@ -12,24 +12,64 @@
         Button:
             text: "Getting Started"
             background_normal: ''
-            background_color: 0.008, 0.463, 0.694, 1
+            background_color: 0.008, 0.463, 0.694, 0
             size_hint:(0.25,0.08)
-            pos_hint: {'center_x': 0.5, 'center_y': 0.28}
-            on_press: root.manager.current='start'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.35}
+            canvas.before:
+                Color:
+                    rgba: 0.8, 0.8, 0.8, 1
+                RoundedRectangle:
+                    pos: (self.pos[0]+10,self.pos[1]-10)
+                    size: (200, 50)
+                    radius: [16,1,16,1]
+                Color:
+                    rgba: 0, 0.25, 0.5, 1
+                RoundedRectangle:
+                    pos: (self.pos[0],self.pos[1])
+                    size: (200, 50)
+                    radius: [16,1,16,1]
+            on_press: 
+                root.manager.current='start'
         Button: 
             background_normal: ''
-            background_color: 0.008, 0.463, 0.694, 1
+            background_color: 0.008, 0.463, 0.694, 0
             text: "Credits"
             size_hint:(0.25,0.08)
-            pos_hint: {'center_x': 0.5, 'center_y': 0.18}
+            pos_hint: {'center_x': 0.5, 'center_y': 0.23}
+            canvas.before:
+                Color:
+                    rgba: 0.8, 0.8, 0.8, 1
+                RoundedRectangle:
+                    pos: (self.pos[0]+10,self.pos[1]-10)
+                    size: (200, 50)
+                    radius: [16,1,16,1]
+                Color:
+                    rgba: 0, 0.25, 0.5, 1
+                RoundedRectangle:
+                    pos: (self.pos[0],self.pos[1])
+                    size: (200, 50)
+                    radius: [16,1,16,1]
             on_press: root.manager.current='credits'
         Button:
             text : "Quit"
             background_normal: ''
-            background_color: 0.008, 0.463, 0.694, 1
+            background_color: 0.008, 0.463, 0.694, 0
             size_hint:(0.25,0.08)
-            pos_hint: {'center_x': 0.5, 'center_y': 0.08}
-            on_press: app.Exit()
+            pos_hint: {'center_x': 0.5, 'center_y': 0.11}
+            canvas.before:
+                Color:
+                    rgba: 0.8, 0.8, 0.8, 1
+                RoundedRectangle:
+                    pos: (self.pos[0]+10,self.pos[1]-10)
+                    size: (200, 50)
+                    radius: [16,1,16,1]
+                Color:
+                    rgba: 0, 0.25, 0.5, 1
+                RoundedRectangle:
+                    pos: (self.pos[0],self.pos[1])
+                    size: (200, 50)
+                    radius: [16,1,16,1]
+            on_press: app.exit()
 
 <CreditPage>:
     FloatLayout:
@@ -62,8 +102,21 @@
             text:"Back"
             pos_hint: {"x":0.1,"top":0.2}
             background_normal: ''
-            background_color: 0.008, 0.463, 0.694, 1
+            background_color: 0.008, 0.463, 0.694, 0
             size_hint:(0.25,0.08)
+            canvas.before:
+                Color:
+                    rgba: 0.8, 0.8, 0.8, 1
+                RoundedRectangle:
+                    pos: (self.pos[0]+10,self.pos[1]-10)
+                    size: (200, 50)
+                    radius: [16,1,16,1]
+                Color:
+                    rgba: 0, 0.25, 0.5, 1
+                RoundedRectangle:
+                    pos: (self.pos[0],self.pos[1])
+                    size: (200, 50)
+                    radius: [16,1,16,1]
             on_press: root.manager.current='landing'
 
 <StartPage>:
@@ -89,16 +142,42 @@
         Button:
             text:"Back"
             background_normal: ''
-            background_color: 0.008, 0.463, 0.694, 1
+            background_color: 0.008, 0.463, 0.694, 0
             pos_hint: {"x":0.25,"top":0.3}
             size_hint:(0.25,0.08)
+            canvas.before:
+                Color:
+                    rgba: 0.8, 0.8, 0.8, 1
+                RoundedRectangle:
+                    pos: (self.pos[0]+10,self.pos[1]-10)
+                    size: (200, 50)
+                    radius: [16,1,16,1]
+                Color:
+                    rgba: 0, 0.25, 0.5, 1
+                RoundedRectangle:
+                    pos: (self.pos[0],self.pos[1])
+                    size: (200, 50)
+                    radius: [16,1,16,1]
             on_press: root.manager.current='landing'
         Button:
             text:"Upload"
             background_normal: ''
-            background_color: 0.008, 0.463, 0.694, 1
+            background_color: 0.008, 0.463, 0.694, 0
             pos_hint: {"x":0.55, "top":0.3}
             size_hint:(0.25,0.08)
+            canvas.before:
+                Color:
+                    rgba: 0.8, 0.8, 0.8, 1
+                RoundedRectangle:
+                    pos: (self.pos[0]+10,self.pos[1]-10)
+                    size: (200, 50)
+                    radius: [16,1,16,1]
+                Color:
+                    rgba: 0, 0.25, 0.5, 1
+                RoundedRectangle:
+                    pos: (self.pos[0],self.pos[1])
+                    size: (200, 50)
+                    radius: [16,1,16,1]
             on_press: root.manager.current='landing'
         
 

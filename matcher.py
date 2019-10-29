@@ -91,7 +91,7 @@ def extract(image_path, vsize=8):
 	kps_temp = sorted(kps, key=lambda x: x.size)[:len(kps)//2]
 	kps_temp = sorted(kps_temp, key=lambda x: abs(x.response))[:vsize//3]
 	dsc2 = kaze.compute(img, kps_temp)[1]
-	kps_temp = sorted(kps, key=lambda x: x.angle)[::-1][:vsize//2]
+	kps_temp = sorted(kps, key=lambda x: x.angle)[:vsize//2]
 	#kps_temp = sorted(kps_temp, key=lambda x: abs(x.response))[:vsize//3]
 	dsc3 = kaze.compute(img, kps_temp)[1]
 	dsc = np.concatenate([dsc.flatten('C'),dsc2.flatten('C'),dsc3.flatten('C')], axis=None)
@@ -107,7 +107,7 @@ def extract(image_path, vsize=8):
 	kps_temp = sorted(kps, key=lambda x: x.size)[:len(kps)//2]
 	kps_temp = sorted(kps_temp, key=lambda x: abs(x.response))[:vsize//3]
 	dsc3 = kaze.compute(img, kps_temp)[1]
-	kps_temp = sorted(kps, key=lambda x: x.angle)[::-1][:vsize//2]
+	kps_temp = sorted(kps, key=lambda x: x.angle)[:vsize//2]
 	#kps_temp = sorted(kps_temp, key=lambda x: abs(x.response))[:vsize//3]
 	dsc4 = kaze.compute(img, kps_temp)[1]
 	dsc2 = np.concatenate([dsc,dsc2.flatten('C'),dsc3.flatten('C'),dsc4.flatten('C')], axis=None)

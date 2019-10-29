@@ -20,18 +20,23 @@ def show_img(path):
 	cv2.waitKey(0)
 
 def main():
-	matcher = Matcher('HUHU/1/', 'DB/temp1.pck')
+	matcher = Matcher('DATA/DATASETS/', 'DB/real5.pck')
 	#sample = ['TEST/test1.jpg','TEST/huhu.jpg','TEST/test2.jpg','TEST/test4.jpg','TEST/test6.jpg','TEST/test5.jpg']
-	sample = [random.choice(matcher.names) for i in range(3)]
-	for s in sample[:2]:
-		print("Sample Image")
-		show_img(s)
-		print("Sorting Time")
-		names, match = matcher.matchCosine(s)
-		print("*DONE*")
-		for i in range(3):
-			print('Match %s' % (1-match[i]))
-			show_img(names[i])
+	benar = 0
+	for i in range(5):
+		sample = [random.choice(matcher.names) for i in range(1)]
+		for s in sample:
+			print("Sample Image")
+			#show_img(s)
+			print("Sorting Time")
+			names, match = matcher.matchCosine(s)
+			print("*DONE*")
+			for i in range(1,2):
+				print('Match %s' % (1-match[i]))
+				if (s[:-10] in names[i]):
+					benar += 1
+				#show_img(names[i])
+		print(benar)
 
 main()
 '''
