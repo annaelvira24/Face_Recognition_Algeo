@@ -19,6 +19,11 @@ def show_img(path):
 	cv2.imshow('IMAGE', img)
 	cv2.waitKey(0)
 
+def run(sample):
+    matcher = Matcher('DATA/DATASETS/', 'DB/real5.pck')
+    names, match = matcher.matchCosine(sample)
+    return names[1]
+
 def main():
 	matcher = Matcher('DATA/DATASETS/', 'DB/real5.pck')
 	#sample = ['TEST/test1.jpg','TEST/huhu.jpg','TEST/test2.jpg','TEST/test4.jpg','TEST/test6.jpg','TEST/test5.jpg']

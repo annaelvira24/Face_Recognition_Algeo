@@ -11,7 +11,10 @@ from kivy.uix.floatlayout import FloatLayout
 from kivy.core.window import Window
 from kivy.uix.screenmanager import *
 from kivy.uix.textinput import TextInput
-#import main
+from kivy.uix.image import Image
+from Tkinter import Tk
+from tkinter.filedialog import askopenfilename
+import main
 # from kivy.graphics import Rectangle
 # from kivy.graphics import Color
 
@@ -34,7 +37,12 @@ class LandingPage(Screen):
 	pass
 
 class StartPage(Screen):
-	pass
+	def runMain(self):
+		Tk().withdraw() # we don't want a full GUI, so keep the root window from appearing
+		filename = askopenfilename()
+		resultimg = main.run()
+		self.ids.real.source = filename
+		self.ids.compared.source = resultimg
 
 class CreditPage(Screen):
 	def switch_screen(*args):
