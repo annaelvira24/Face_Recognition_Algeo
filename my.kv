@@ -1,0 +1,112 @@
+<LandingPage>
+    FloatLayout:
+        
+        Image:
+            source: 'homepage.png'
+            keep_ratio: True
+            allow_stretch: True
+            opacity: 0.8
+            size_hint: 1, 1
+            pos_hint: {'center_x': 0.5, 'center_y': 0.7}
+
+        Button:
+            text: "Getting Started"
+            background_normal: ''
+            background_color: 0.008, 0.463, 0.694, 1
+            size_hint:(0.25,0.08)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.28}
+            on_press: root.manager.current='start'
+        Button: 
+            background_normal: ''
+            background_color: 0.008, 0.463, 0.694, 1
+            text: "Credits"
+            size_hint:(0.25,0.08)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.18}
+            on_press: root.manager.current='credits'
+        Button:
+            text : "Quit"
+            background_normal: ''
+            background_color: 0.008, 0.463, 0.694, 1
+            size_hint:(0.25,0.08)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.08}
+            on_press: app.Exit()
+
+<CreditPage>:
+    FloatLayout:
+        Image:
+            source: 'background2.png'
+            keep_ratio: True
+            allow_stretch: True
+            opacity: 0.8
+            size_hint: 1, 1
+            pos_hint: {'center_x': 0.5, 'center_y': 0.7}
+
+        Label:
+            text:"Credits By"
+            pos_hint: {'center_x':.5, "top":0.8}
+            size_hint: 0.4, 0.2
+            font_size: 30
+        Label:
+            text:"Anna Elvira / 13518045"
+            pos_hint: {'center_x':.5, "top":0.6}
+            size_hint: 0.35, 0.10
+        Label: 
+            text:"Yonatan Viody/ 13518120"
+            pos_hint: {'center_x':.5,"top":0.55}
+            size_hint: 0.35, 0.10
+        Label:
+            text:"Stephen Thajeb / 13518150"
+            pos_hint: {'center_x':.5,"top":0.5}
+            size_hint: 0.35, 0.10
+        Button:
+            text:"Back"
+            pos_hint: {"x":0.1,"top":0.2}
+            background_normal: ''
+            background_color: 0.008, 0.463, 0.694, 1
+            size_hint:(0.25,0.08)
+            on_press: root.manager.current='landing'
+
+<StartPage>:
+    ##filename di kiri untuk diakses di main : filename di kanan sesuai dengan id
+    filename : filename
+    FloatLayout:
+        canvas.before:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: 'background2.png'
+        Label:
+            text:"Upload the photo"
+            pos_hint: {"x":0.3, "top":0.7}
+            size_hint: 0.4, 0.05
+            font_size: 20
+        TextInput:
+            pos_hint: {"x":0.3, "top":0.6}
+            size_hint: 0.4, 0.05
+            id: filename 
+            # multiline: False
+            hint_text:"filename.jpg/.png"
+        Button:
+            text:"Back"
+            background_normal: ''
+            background_color: 0.008, 0.463, 0.694, 1
+            pos_hint: {"x":0.25,"top":0.3}
+            size_hint:(0.25,0.08)
+            on_press: root.manager.current='landing'
+        Button:
+            text:"Upload"
+            background_normal: ''
+            background_color: 0.008, 0.463, 0.694, 1
+            pos_hint: {"x":0.55, "top":0.3}
+            size_hint:(0.25,0.08)
+            on_press: root.manager.current='landing'
+        
+
+
+
+                
+
+                     
+
+                        
+    
