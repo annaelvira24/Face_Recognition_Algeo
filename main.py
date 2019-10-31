@@ -20,12 +20,24 @@ def show_img(path):
 	cv2.waitKey(0)
 
 def run(sample):
-    matcher = Matcher('DATA/DATASETS/', 'DB/real5.pck')
+    matcher = Matcher('DATA/DATASETS/', 'DB/real6.pck') #paling bagus db real6 - 4 4 (2)
     names, match = matcher.matchCosine(sample)
     return names[1]
 
 def main():
-	matcher = Matcher('DATA/DATASETS/', 'DB/real6.pck')
+	matcher = Matcher('HUHU/1/', 'DB/temp11.pck') #best so far temp5
+	'''
+	real7 4 (4) (2) best
+	temp10 4 (8)/3 (2)
+	temp9 4 (4) (8)/3
+	temp8 4 (2) (2)
+	temp7 4
+	temp6 4 0 (2)
+	temp5 4 (4) (2)
+	temp4 4 4
+	temp3 4 4 (2)
+	temp2 4 4 4
+	'''
 	#sample = ['TEST/test1.jpg','TEST/huhu.jpg','TEST/test2.jpg','TEST/test4.jpg','TEST/test6.jpg','TEST/test5.jpg']
 	benar = 0
 	for i in range(100):
@@ -38,7 +50,7 @@ def main():
 			print("*DONE*")
 			for i in range(1,2):
 				print('Match %s' % (1-match[i]))
-				if (s[:-10] in names[i]):
+				if (s[:-13] in names[i]):
 					benar += 1
 				#show_img(names[i])
 		print(benar)
