@@ -14,7 +14,7 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.image import Image
 from tkinter import Tk
 from tkinter.filedialog import askopenfilename
-#import main
+import main
 # from kivy.graphics import Rectangle
 # from kivy.graphics import Color
 
@@ -40,7 +40,7 @@ class StartPage(Screen):
 	def runMain(self):
 		Tk().withdraw() # we don't want a full GUI, so keep the root window from appearing
 		filename = askopenfilename()
-		#resultimg = main.run(filename)
+		resultimg = main.run(filename)
 #		self.ids.real.source = filename
 #		self.ids.compared.source = resultimg
 
