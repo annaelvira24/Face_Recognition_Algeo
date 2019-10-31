@@ -41,8 +41,8 @@ class StartPage(Screen):
 		Tk().withdraw() # we don't want a full GUI, so keep the root window from appearing
 		filename = askopenfilename()
 		#resultimg = main.run(filename)
-		self.ids.real.source = filename
-		self.ids.compared.source = resultimg
+#		self.ids.real.source = filename
+#		self.ids.compared.source = resultimg
 
 class CreditPage(Screen):
 	def switch_screen(*args):

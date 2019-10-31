@@ -20,7 +20,7 @@ def show_img(path):
 	cv2.waitKey(0)
 
 def run(sample):
-    matcher = Matcher('DATA/DATASETS/', 'DB/real6.pck') #paling bagus db real6 - 4 4 (2)
+    matcher = Matcher('DATA/DATASETS/', 'DB/real7.pck') #paling bagus db real6 - 4 4 (2)
     names, match = matcher.matchCosine(sample)
     return names[1]
 
@@ -55,7 +55,7 @@ def main():
 				#show_img(names[i])
 		print(benar)
 
-main()
+#main()
 '''
 def run():
     # getting 3 random images 
