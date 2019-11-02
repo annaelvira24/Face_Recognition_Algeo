@@ -9,9 +9,7 @@ import os
 get_context().precision = 100
 
 # Variable Global
-images_path = 'HUHU/'
-uvDB_dir = 'UVDB/'
-dirs = [os.path.join(images_path, p) for p in sorted(os.listdir(images_path))]
+
 
 class Matcher(object):
 	def __init__(self, path, db_path="features.pck"):

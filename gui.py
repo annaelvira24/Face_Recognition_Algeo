@@ -40,7 +40,8 @@ class StartPage(Screen):
 	def runMain(self):
 		Tk().withdraw() # we don't want a full GUI, so keep the root window from appearing
 		filename = askopenfilename()
-		resultimg = main.run(filename)
+		print(filename)
+		resultimg = main.run(TEST/test1.jpg)
 #		self.ids.real.source = filename
 #		self.ids.compared.source = resultimg
 
