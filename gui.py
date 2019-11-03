@@ -27,6 +27,7 @@ class MyApp (App):
 		sm.add_widget(LandingPage(name="landing"))
 		sm.add_widget(CreditPage(name="credits"))
 		sm.add_widget(StartPage(name="start"))
+		sm.add_widget(MethodPage(name="method"))
 		sm.add_widget(ResultPage(name="result"))
 		# print(sm.screen_names)
 		return sm       
@@ -41,7 +42,7 @@ class StartPage(Screen):
 		Tk().withdraw() # we don't want a full GUI, so keep the root window from appearing
 		filename = askopenfilename()
 		print(filename)
-		resultimg = main.run(TEST/test1.jpg)
+		resultimg = main.run('TEST/test1.jpg')
 #		self.ids.real.source = filename
 #		self.ids.compared.source = resultimg
 
@@ -49,6 +50,9 @@ class CreditPage(Screen):
 	def switch_screen(*args):
 		global sm
 		sm.current="credits"    
+
+class MethodPage(Screen):
+	pass
 
 class ResultPage(Screen):
 	pass

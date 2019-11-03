@@ -2,7 +2,7 @@
     FloatLayout:
         
         Image:
-            source: 'homepage.png'
+            source: 'ASSETS/homepage.png'
             keep_ratio: True
             allow_stretch: True
             opacity: 0.8
@@ -12,7 +12,7 @@
         Button:
             
             text: "Getting Started"
-            background_normal: 'button_normal.png'
+            background_normal: 'ASSETS/button_normal.png'
             #background_color: 0.008, 0.463, 0.694, 0
             size_hint:(0.25,0.1)
             pos_hint: {'center_x': 0.5, 'center_y': 0.35}
@@ -33,7 +33,7 @@
                 root.manager.current='start'
         Button: 
             text: "Credits"
-            background_normal: 'button_normal.png'
+            background_normal: 'ASSETS/button_normal.png'
             #background_color: 0.008, 0.463, 0.694, 0
             size_hint:(0.25,0.1)
             pos_hint: {'center_x': 0.5, 'center_y': 0.23}
@@ -53,7 +53,7 @@
             on_press: root.manager.current='credits'
         Button:
             text : "Quit"
-            background_normal: 'button_normal.png'
+            background_normal: 'ASSETS/button_normal.png'
             #background_color: 0.008, 0.463, 0.694, 0
             size_hint:(0.25,0.1)
             pos_hint: {'center_x': 0.5, 'center_y': 0.11}
@@ -78,7 +78,7 @@
             Rectangle:
                 pos: self.pos
                 size: self.size
-                source: 'background2.png'
+                source: 'ASSETS/background2.png'
                 
         Label:
             text:"Credits By"
@@ -105,7 +105,7 @@
             text:"Back"
             text_color: 0.741, 0.898, 1, 1
             pos_hint: {"x":0.1,"top":0.2}
-            background_normal: 'button_normal.png'
+            background_normal: 'ASSETS/button_normal.png'
             #background_color: 0.008, 0.463, 0.694, 0
             size_hint:(0.25,0.1)
             # canvas.before:
@@ -119,25 +119,40 @@
             on_press: root.manager.current='landing'
 
 <StartPage>:
-    ##filename di kiri untuk diakses di main : filename di kanan sesuai dengan id
-    filename : filename
     FloatLayout:
         canvas.before:
             Rectangle:
                 pos: self.pos
                 size: self.size
-                source: 'background2.png'
+                source: 'ASSETS/background2.png'
         Label:
-            text:"Upload the photo"
-            pos_hint: {"x":0.3, "top":0.7}
+            text:"CHOOSE YOUR PHOTO"
+            pos_hint: {'center_x': 0.5, "top":0.8}
             size_hint: 0.4, 0.05
             font_size: 20
-        TextInput:
-            pos_hint: {"x":0.3, "top":0.6}
-            size_hint: 0.4, 0.05
-            id: filename 
-            # multiline: False
-            hint_text:"filename.jpg/.png"
+            canvas.before:
+                Color:
+                    rgba: 0, 0.067, 0.5, 1
+                RoundedRectangle:
+                    pos: (self.pos)
+                    size: (self.size)
+                    radius: [5,5,5,5]
+        Image:
+            source: 'ASSETS/choose.png'
+            keep_ratio: True
+            allow_stretch: True
+            opacity: 0.8
+            size_hint: 0.38,0.38
+            pos_hint: {'center_x': 0.5, 'top': 0.75}
+            
+
+        # TextInput:
+        #     pos_hint: {"x":0.3, "top":0.6}
+        #     size_hint: 0.4, 0.05
+        #     id: filename 
+        #     # multiline: False
+        #     hint_text:"filename.jpg/.png"
+
         # Image:
         #     id: real
         #     source: ''
@@ -148,44 +163,58 @@
         #     allow_stretch: True
         Button:
             text:"Back"
-            background_normal: 'button_normal.png'
+            background_normal: 'ASSETS/button_normal.png'
             #background_color: 0.008, 0.463, 0.694, 0
             pos_hint: {"x":0.25,"top":0.3}
             size_hint:(0.25,0.1)
-            # canvas.before:
-            #     Color:
-            #         rgba: 0.8, 0.8, 0.8, 1
-            #     RoundedRectangle:
-            #         pos: (self.pos[0]+10,self.pos[1]-10)
-            #         size: (200, 50)
-            #         radius: [16,1,16,1]
-            #     Color:
-            #         rgba: 0, 0.25, 0.5, 1
-            #     RoundedRectangle:
-            #         pos: (self.pos[0],self.pos[1])
-            #         size: (200, 50)
-            #         radius: [16,1,16,1]
             on_press: root.manager.current='landing'
 
         Button:
-            text:"Upload"
-            background_normal: 'button_normal.png'
+            text:"Browse File"
+            background_normal: 'ASSETS/button_normal.png'
             #background_color: 0.008, 0.463, 0.694, 0
             pos_hint: {"x":0.55, "top":0.3}
             size_hint:(0.25,0.1)
-            # canvas.before:
-            #     Color:
-            #         rgba: 0.8, 0.8, 0.8, 1
-            #     RoundedRectangle:
-            #         pos: (self.pos[0]+10,self.pos[1]-10)
-            #         size: (200, 50)
-            #         radius: [16,1,16,1]
-            #     Color:
-            #         rgba: 0, 0.25, 0.5, 1
-            #     RoundedRectangle:
-            #         pos: (self.pos[0],self.pos[1])
-            #         size: (200, 50)
-            #         radius: [16,1,16,1]
             on_press: root.runMain()
         
+<MethodPage>:
+    FloatLayout:
+        canvas.before:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: 'ASSETS/background2.png'
+        Label:
+            text:"CHOOSE METHOD"
+            pos_hint: {'center_x': 0.5, "top":0.8}
+            size_hint: 0.4, 0.05
+            font_size: 20
+            canvas.before:
+                Color:
+                    rgba: 0, 0.067, 0.5, 1
+                RoundedRectangle:
+                    pos: (self.pos)
+                    size: (self.size)
+                    radius: [5,5,5,5]
+        Image:
+            source: 'ASSETS/calculate.png'
+            keep_ratio: True
+            allow_stretch: True
+            opacity: 0.6
+            size_hint: 0.38,0.38
+            pos_hint: {'center_x': 0.5, 'top': 0.75}
+            
+        Button:
+            text:"Euclidean Distance"
+            background_normal: 'ASSETS/button_normal.png'
+            pos_hint: {"x":0.25,"top":0.3}
+            size_hint:(0.25,0.1)
+#            on_press: root.manager.current='landing'
+
+        Button:
+            text:"Cosine Similarity"
+            background_normal: 'ASSETS/button_normal.png'
+            pos_hint: {"x":0.55, "top":0.3}
+            size_hint:(0.25,0.1)
+#            on_press: root.runMain()
 
