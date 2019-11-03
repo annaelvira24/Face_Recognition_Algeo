@@ -40,9 +40,9 @@ class StartPage(Screen):
 	def runMain(self):
 		Tk().withdraw() # we don't want a full GUI, so keep the root window from appearing
 		filename = askopenfilename()
-		resultimg = main.run(filename)
+		resulting = main.run(filename)
 #		self.ids.real.source = filename
-#		self.ids.compared.source = resultimg
+#		self.ids.compared.source = resulting
 
 class CreditPage(Screen):
 	def switch_screen(*args):
@@ -51,7 +51,6 @@ class CreditPage(Screen):
 
 class ResultPage(Screen):
 	pass
-
 
 if __name__ == "__main__":
 	MyApp().run()  
