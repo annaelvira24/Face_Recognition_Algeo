@@ -15,6 +15,9 @@ from kivy.uix.image import Image
 from tkinter import Tk
 from tkinter.filedialog import askopenfilename
 import main
+import io
+from kivy.core.image import Image as CoreImage
+
 # from kivy.graphics import Rectangle
 # from kivy.graphics import Color
 
@@ -27,6 +30,7 @@ class MyApp (App):
 		sm.add_widget(LandingPage(name="landing"))
 		sm.add_widget(CreditPage(name="credits"))
 		sm.add_widget(StartPage(name="start"))
+		sm.add_widget(MethodPage(name="method"))
 		sm.add_widget(ResultPage(name="result"))
 		# print(sm.screen_names)
 		return sm       
@@ -41,6 +45,14 @@ class StartPage(Screen):
 		Tk().withdraw() # we don't want a full GUI, so keep the root window from appearing
 		filename = askopenfilename()
 		resulting = main.run(filename)
+		print(resulting)
+		data = io.BytesIO(open("poop.jpg", "rb").read())
+		im = CoreImage(data, ext="png")
+		
+		
+		
+
+		# resultimg = main.run('TEST/test1.jpg')
 #		self.ids.real.source = filename
 #		self.ids.compared.source = resulting
 
@@ -48,6 +60,9 @@ class CreditPage(Screen):
 	def switch_screen(*args):
 		global sm
 		sm.current="credits"    
+
+class MethodPage(Screen):
+	pass
 
 class ResultPage(Screen):
 	pass

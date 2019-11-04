@@ -9,7 +9,6 @@ import os
 get_context().precision = 100
 
 # Variable Global
-
 class Matcher(object):
 	def __init__(self, path, db_path="features.pck"):
 		try:

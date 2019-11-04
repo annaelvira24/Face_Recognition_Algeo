@@ -52,7 +52,7 @@ def main():
 				print('Match %s' % (1-match[i]))
 				if (s[:-13] in names[i]):
 					benar += 1
-				#show_img(names[i])
+				# show_img(names[i])
 		print(benar)
 
 #main()
