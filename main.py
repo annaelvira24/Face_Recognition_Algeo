@@ -10,22 +10,32 @@ get_context().precision = 100
 # Variable Global
 db_dir = 'DB/'
 
-'''
-ma = Matcher('features.pck')
-names, match = ma.matchCosine(files[0])
-'''
-def show_img(path):
-	img = cv2.imread(path, 1)
+def showCmp(path,path2):
+	img = np.hstack((cv2.imread(path, 1), cv2.imread(path2, 1)))
 	cv2.imshow('IMAGE', img)
 	cv2.waitKey(0)
 
-def run(sample):
-    matcher = Matcher('DATA/DATASETS/', 'DB/real7.pck') #paling bagus db real6 - 4 4 (2)
-    names, match = matcher.matchCosine(sample)
-    return names[1]
+def testrun():
+	matcher = Matcher('DATA/DATASETS/', 'DB/real7.pck') #paling bagus db real6 - 4 4 (2)
+	sample = random.choice(matcher.names)
+	print("Starting the test....")
+	names, match = matcher.matchCosine(sample)
+	print('Match %s' % (1-match[1]))
+	showCmp(sample,names[1])
+    
+    
+def runWithCosineSim(sample):
+	matcher = Matcher('DATA/DATASETS/', 'DB/real7.pck') #paling bagus db real6 - 4 4 (2)
+	names, match = matcher.matchCosine(sample)
+	return names[1:11]
 
-def main():
-	matcher = Matcher('HUHU/1/', 'DB/temp11.pck') #best so far temp5
+def runWithNormEuclid(sample):
+	matcher = Matcher('DATA/DATASETS/', 'DB/real7.pck') #paling bagus db real6 - 4 4 (2)
+	names, match = matcher.matchEuclid(sample)
+	return names[1:11]
+
+def accurate():
+	matcher = Matcher('DATA/DATASETS/', 'DB/real7.pck') #best so far temp5
 	'''
 	real7 4 (4) (2) best
 	temp10 4 (8)/3 (2)
@@ -43,45 +53,28 @@ def main():
 	for i in range(100):
 		sample = [random.choice(matcher.names) for i in range(1)]
 		for s in sample:
-			print("Sample Image")
+			#print("Sample Image")
 			#show_img(s)
-			print("Sorting Time")
+			#print("Sorting Time")
 			names, match = matcher.matchCosine(s)
-			print("*DONE*")
+			#print("*DONE*")
 			for i in range(1,2):
-				print('Match %s' % (1-match[i]))
+				#print('Match %s' % (1-match[i]))
 				if (s[:-13] in names[i]):
 					benar += 1
-				#show_img(names[i])
-		print(benar)
+	print("Tingkat akurasi program dengan cosine similarity: %.2f." % (benar/100))
 
-#main()
-'''
-def run():
-    # getting 3 random images 
-    sample = ['TEST/huhu.jpg']
-    p1 = Matcher('1/','1.pck')
-    p2 = Matcher('2/','2.pck')
-    
-    for s in sample:
-        print('Query image ==========================================')
-        show_img(s)
-        names, match = np.concatenate((p1.matchCosine(s)[0],p2.matchCosine(s)[0]), axis=None), np.concatenate((p1.matchCosine(s)[1],p2.matchCosine(s)[1]), axis=None)
-        #print(match)
-        #match = np.array(map(mpfr,match))
-        print(len(match))
-        sortidx = np.argsort(match)
-        names = names[sortidx]
-        match = match[sortidx]
-        print('Result images ========================================')
-        for i in range(5):
-            # we got cosine distance, less cosine distance between vectors
-            # more they similar, thus we subtruct it from 1 to get match value
-            print('Match %s' % (1-match[i]))
-            try:
-                show_img(os.path.join('1/', names[i]))
-            except:
-                show_img(os.path.join('2/', names[i]))
-
-run()
-'''
+	benar = 0
+	for i in range(100):
+		sample = [random.choice(matcher.names) for i in range(1)]
+		for s in sample:
+			#print("Sample Image")
+			#show_img(s)
+			#print("Sorting Time")
+			names, match = matcher.matchEuclid(s)
+			#print("*DONE*")
+			for i in range(1,2):
+				#print('Match %s' % (1-match[i]))
+				if (s[:-13] in names[i]):
+					benar += 1
+	print("Tingkat akurasi program dengan euclidean distance: %.2f." % (benar/100))

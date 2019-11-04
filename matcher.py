@@ -8,9 +8,6 @@ import os
 # Inisiasi precision
 get_context().precision = 100
 
-# Variable Global
-
-
 class Matcher(object):
 	def __init__(self, path, db_path="features.pck"):
 		try:
@@ -24,42 +21,10 @@ class Matcher(object):
 			self.data = pickle.load(open(db_path, "rb"))
 		self.names, self.db = map(np.array, zip(*self.data.items()))
 		self.names = np.array(list(map(lambda x: os.path.join(path,x), self.names)))
-		'''
-		try:
-			print("Trying to read data from "+uvDB_dir+db_path.split("/")[1].split(".")[0]+"....")
-			self.uniqueVector = pickle.load(open(uvDB_dir+db_path.split("/")[1].split(".")[0]+".uv", "rb"))
-			print("*SUCCESS*")
-		except:
-			print("*FAILED*")
-			print("Creating data from "+path+" to "+uvDB_dir+db_path.split("/")[1].split(".")[0]+"....")
-			self.uniqueVector = []
-			self.findUniqueVector()
-			pickle.dump(self.uniqueVector, open(uvDB_dir+db_path.split("/")[1].split(".")[0]+".uv", "wb"))
-		print(self.uniqueVector)
-		'''
 
 	def cosineSim(self, vector):
 		return cosineSimilarity(self.db, np.array(vector))
-	'''
-	def findUniqueVector(self):
-		init = 1
-		cvec = 30
-		while (len(self.uniqueVector) < cvec):
-			self.uniqueVector = []
-			for i in range(len(self.db[0])):
-				tc = self.db[0][i]
-				unique = True
-				j = 0
-				val = 0
-				while(j < len(self.db) and unique):
-					unique = (init <= (self.db[j][i]/tc) <= (1/init))
-					val += (self.db[j][i]/tc)
-					j += 1
-				if (unique):
-					self.uniqueVector.append([i,val/len(self.db)])
-			init -= 0.01
-		self.uniqueVector = list(zip(*sorted(self.uniqueVector,key=lambda x: abs(1-x[1]))[:cvec]))[0]
-	'''
+
 	def normEuclid(self, vector):
 		return normEuclidean(self.db, np.array(vector))
 
