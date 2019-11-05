@@ -93,7 +93,7 @@ class ResultPage(Screen):
 		filename.pop(0)
 		resultArr.pop(0)
 		resultArr.pop(0)
-		self.ids.ids.restart.text=""
+		self.ids.restart.text=""
 		self.ids.restart.size_hint_x= 0
 		self.ids.restart.size_hint_y= 0
 		self.ids.restart.pos_hint={'center_x':0,'center_y':0}		
