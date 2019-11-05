@@ -17,10 +17,9 @@ class Matcher(object):
 		except:
 			print("*FAILED*")
 			print("Creating data from "+path+" to "+db_path+"....")
-			createDB(path, db_path)
+			createDB(db_path)
 			self.data = pickle.load(open(db_path, "rb"))
 		self.names, self.db = map(np.array, zip(*self.data.items()))
-		self.names = np.array(list(map(lambda x: os.path.join(path,x), self.names)))
 
 	def cosineSim(self, vector):
 		return cosineSimilarity(self.db, np.array(vector))
@@ -60,48 +59,25 @@ def extract(image_path, vsize=8):
 #	kps_temp = sorted(kps, key=lambda x: -x.response)[:vsize//2]
 #	dsc4 = kaze.compute(img, kps_temp)[1]
 	dsc = np.concatenate([dsc.flatten('C'),dsc2.flatten('C'),dsc3.flatten('C')], axis=None)
-	#Grayscale
-	'''
-	img = cv2.imread(image_path, 0)
-	#if (cv2.countNonZero(cv2.imread(image_path, 0)) < int(img.size*0.7)):
-	#	img = img[int(len(img)*0.05):int(len(img)*0.95), int(len(img[0])*0.05):int(len(img[0])*0.95)]
-	#img = cv2.GaussianBlur(img, (5,5), 0)
-	#img =cv2.resize(img, (img.shape[0], img.shape[1]))
-	kps = kaze.detect(img)
-	kps_temp = sorted(kps, key=lambda x: abs(x.response))[:vsize//2]
-	dsc2 = kaze.compute(img, kps_temp)[1]
-	kps_temp = sorted(kps, key=lambda x: x.size)[:vsize//3]
-	kps_temp = sorted(kps_temp, key=lambda x: abs(x.response))[:vsize//2]
-	dsc3 = kaze.compute(img, kps_temp)[1]
-	kps_temp = sorted(kps, key=lambda x: x.angle)[:vsize//2]
-	#kps_temp = sorted(kps_temp, key=lambda x: abs(x.response))[:vsize//3]
-	dsc4 = kaze.compute(img, kps_temp)[1]
-	dsc2 = np.concatenate([dsc,dsc2.flatten('C'),dsc3.flatten('C'),dsc4.flatten('C')], axis=None)
-	'''
-	'''
-	kaze = cv2.KAZE_create()
-	kps = kaze.detect(img)
-	kps_temp = sorted(kps, key=lambda x: abs(x.response))[:vsize]
-	dsc = kaze.compute(img, kps_temp)[1]
-	kps = kaze.detect(img)
-	kps_temp = sorted(kps, key=lambda x: abs(x.response))[:vsize]
-	img = cv2.imread(image_path, 0)
-	dsc2 = kaze.compute(img, kps_temp)[1]
-	'''
-	#dsc = np.concatenate([dsc.flatten('K'),dsc2.flatten('K')],axis=None)
 	needed_size = (vsize * 2 * 64)
 	if dsc.size < needed_size:
 		dsc = np.concatenate([dsc, np.zeros(needed_size - dsc.size)])
 	return dsc
 
-def createDB(path,db_path="features.pck"):
+def createDB(db_path="features.pck"):
 	result = {}
-	files_db = [os.path.join(path, p) for p in sorted(os.listdir(path))]
+	try:
+		files_db = pickle.load(open("DB/listdataset","rb"))
+	except:
+		files_db = []
+		for path in os.listdir("DataSet"):
+			for image in os.listdir(os.path.join("DataSet",path)):
+				files_db.append(os.path.join(os.path.join("DataSet",path),image))
+		pickle.dump(files_db, open("DB/listdataset", 'wb'))
 	i = 1
 	mark = 1
 	for f in files_db:
-		name = f.split('/')[-1].lower()
-		result[name] = extract(f)
+		result[f] = extract(f)
 		pr = (i/len(files_db))*100
 		if (pr > mark):
 			print("EXTRACTING %.2f%c..." % (pr,'%'))

@@ -23,6 +23,12 @@ if (len(sys.argv) > 1):
 		accurate()
 	elif (sys.argv[1] == "test-image"):
 		testrun()
+	elif (sys.argv[1] == "random-sample"):
+		pickSamples()
+	elif (sys.argv[1] == "new-db-with-hist"):
+		generateDB(True)
+	elif (sys.argv[1] == "new-db"):
+		generateDB(False)
 	else:
 		errormsg()
 else:
