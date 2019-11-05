@@ -1,6 +1,5 @@
 <LandingPage>
     FloatLayout:
-        
         Image:
             source: 'ASSETS/homepage.png'
             keep_ratio: True
@@ -99,7 +98,6 @@
             pos_hint: {'center_x':.5,"top":0.5}
             size_hint: 0.35, 0.10
 
-        
 
         Button:
             text:"Back"
@@ -114,8 +112,6 @@
             #     Rectangle:
             #         pos: (self.pos[0]+10,self.pos[1]-10)
             #         size: (200, 50)
-
-
             on_press: root.manager.current='landing'
 
 <StartPage>:
@@ -200,7 +196,7 @@
             source: 'ASSETS/calculate.png'
             keep_ratio: True
             allow_stretch: True
-            opacity: 0.6
+            opacity: 0.8
             size_hint: 0.38,0.38
             pos_hint: {'center_x': 0.5, 'top': 0.75}
             
@@ -209,35 +205,87 @@
             background_normal: 'ASSETS/button_normal.png'
             pos_hint: {"x":0.25,"top":0.3}
             size_hint:(0.25,0.1)
-            on_press: root.
+            on_press: root.runCosine()
         Button:
             text:"Cosine Similarity"
             background_normal: 'ASSETS/button_normal.png'
             pos_hint: {"x":0.55, "top":0.3}
             size_hint:(0.25,0.1)
-            on_press: 
+            on_press: root.runEuclid()
 
 <ResultPage>
     FloatLayout:
+        canvas.before:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: 'ASSETS/background2.png'
+        Label:
+            text:"RESULTS"
+            pos_hint: {'center_x': 0.5, "top":0.9}
+            size_hint: 0.4, 0.05
+            font_size: 20
+            canvas.before:
+                Color:
+                    rgba: 0, 0.067, 0.5, 1
+                RoundedRectangle:
+                    pos: (self.pos)
+                    size: (self.size)
+                    radius: [5,5,5,5]
+        Label:
+            id:similarity
+            pos_hint: {'center_x': 0.5, "top":0.7}
+            size_hint: 0.4, 0.05
+            font_size: 20
         Image:
-            # id : fotoupload
-            # source : root.filename
-            # keep_ratio: True
-            # allow_stretch: True
-            # opacity: 0.6
-            # size_hint: 0.38,0.38
-            # pos_hint: {'center_x': 0.5, 'top': 0.75}
+            id : upload
+            keep_ratio: True
+            allow_stretch: False
+            size_hint: 0.4, 0.4
+            pos_hint: {'center_x': 0.25, 'top': 0.75}
+            canvas.after:
+                BorderImage:
+                    size : (self.width-27, self.height + 50)
+                    pos : (self.x+15, self.y-25)
+                    source: 'ASSETS/frame.png'
         Image:
-            # id : hasilfoto
-            # source : root.hasil()
-            # keep_ratio: True
-            # allow_stretch: True
-            # opacity: 0.6
-            # size_hint: 0.38,0.38
-            # pos_hint: {'center_x': 0.5, 'top': 0.75}
-
-
-
-
-
-
+            id : compare
+            keep_ratio: True
+            allow_stretch: False
+            size_hint: 0.4, 0.4
+            pos_hint: {'center_x': 0.75, 'top': 0.75}
+            canvas.after:
+                BorderImage:
+                    size : (self.width-27, self.height + 50)
+                    pos : (self.x+15, self.y-25)
+                    source: 'ASSETS/frame.png'
+        Button:
+            text:"Next"
+            background_normal: 'ASSETS/button-3.png'
+            pos_hint: {"center_x":0.8,"top":0.2}
+            size_hint:(0.2,0.1)
+            halign: 'left'
+            padding_x : 40
+            valign: 'center'
+            text_size: self.size
+            on_press: root.next()
+        Button:
+            text:"Prev"
+            background_normal: 'ASSETS/button-2.png'
+            pos_hint: {"center_x":0.2,"top":0.2}
+            size_hint:(0.2,0.1)
+            halign: 'right'
+            padding_x : 40
+            valign: 'center'
+            text_size: self.size
+            on_press: root.prev()
+        Button:
+            id: restart
+            background_normal: 'ASSETS/button_normal.png'
+            pos_hint: {"center_x":0,"top":0}
+            size_hint:(0,0)
+            halign: 'center'
+            padding_x : 40
+            valign: 'center'
+            text_size: self.size
+            on_press: root.restarting()
