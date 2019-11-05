@@ -16,7 +16,6 @@ from tkinter import Tk
 from tkinter.filedialog import askopenfilename
 import main
 import io
-from kivy.core.image import Image as CoreImage
 
 # from kivy.graphics import Rectangle
 # from kivy.graphics import Color
@@ -40,32 +39,41 @@ class MyApp (App):
 class LandingPage(Screen):
 	pass
 
+
 class StartPage(Screen):
 	def runMain(self):
 		Tk().withdraw() # we don't want a full GUI, so keep the root window from appearing
 		filename = askopenfilename()
-		resulting = main.run(filename)
-		print(resulting)
-		data = io.BytesIO(open("poop.jpg", "rb").read())
-		im = CoreImage(data, ext="png")
-		
-		
-		
-
+		# print("The location of the file is ")
+		# print(filename)
+		sm.current="method"
+		# data = io.BytesIO(open("poop.jpg", "rb").read())
+		# im = CoreImage(data, ext="png")
 		# resultimg = main.run('TEST/test1.jpg')
 #		self.ids.real.source = filename
 #		self.ids.compared.source = resulting
+
+
+class MethodPage(Screen):
+	def runMethod(self):
+		resulting = main.run(filename)
+		# print(resulting)
+		
+	pass
 
 class CreditPage(Screen):
 	def switch_screen(*args):
 		global sm
 		sm.current="credits"    
 
-class MethodPage(Screen):
-	pass
 
 class ResultPage(Screen):
 	pass
+	# def upload(self): 
+	# 	srcUpload = str(App.get_running_app().filename)
+	# 	srcUpload = '"' + srcUpload + '"'
+	# 	print(srcUpload)
+	# 	self.ids.fotoupload.source = srcUpload
 
 if __name__ == "__main__":
 	MyApp().run()  

@@ -10,7 +10,7 @@ get_context().precision = 100
 # Variable Global
 db_dir = 'DB/'
 
-'''
+'''pp
 ma = Matcher('features.pck')
 names, match = ma.matchCosine(files[0])
 '''

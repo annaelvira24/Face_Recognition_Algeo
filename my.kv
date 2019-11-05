@@ -9,8 +9,7 @@
             size_hint: 1, 1
             pos_hint: {'center_x': 0.5, 'center_y': 0.7}
 
-        Button:
-            
+        Button:    
             text: "Getting Started"
             background_normal: 'ASSETS/button_normal.png'
             #background_color: 0.008, 0.463, 0.694, 0
@@ -50,6 +49,7 @@
             #         pos: (self.pos[0],self.pos[1])
             #         size: (200, 50)
             #         radius: [16,1,16,1]
+
             on_press: root.manager.current='credits'
         Button:
             text : "Quit"
@@ -145,7 +145,6 @@
             size_hint: 0.38,0.38
             pos_hint: {'center_x': 0.5, 'top': 0.75}
             
-
         # TextInput:
         #     pos_hint: {"x":0.3, "top":0.6}
         #     size_hint: 0.4, 0.05
@@ -210,12 +209,35 @@
             background_normal: 'ASSETS/button_normal.png'
             pos_hint: {"x":0.25,"top":0.3}
             size_hint:(0.25,0.1)
-#            on_press: root.manager.current='landing'
-
+            on_press: root.
         Button:
             text:"Cosine Similarity"
             background_normal: 'ASSETS/button_normal.png'
             pos_hint: {"x":0.55, "top":0.3}
             size_hint:(0.25,0.1)
-            on_press: root.runMain()
+            on_press: 
+
+<ResultPage>
+    FloatLayout:
+        Image:
+            # id : fotoupload
+            # source : root.filename
+            # keep_ratio: True
+            # allow_stretch: True
+            # opacity: 0.6
+            # size_hint: 0.38,0.38
+            # pos_hint: {'center_x': 0.5, 'top': 0.75}
+        Image:
+            # id : hasilfoto
+            # source : root.hasil()
+            # keep_ratio: True
+            # allow_stretch: True
+            # opacity: 0.6
+            # size_hint: 0.38,0.38
+            # pos_hint: {'center_x': 0.5, 'top': 0.75}
+
+
+
+
+
 
