@@ -38,12 +38,12 @@ def testrun():
 def runWithCosineSim(sample):
 	matcher = Matcher(datauji, used_db)
 	names, match = matcher.matchCosine(sample)
-	return names[0:10],match[0:10]
+	return names[0:10], match[0:10]
 
 def runWithNormEuclid(sample):
 	matcher = Matcher(datauji, used_db)
 	names, match = matcher.matchEuclid(sample)
-	return names[0:10],match[0:10]
+	return names[0:10], match[0:10], match[-1]
 
 def pickSamples():
 	paths = os.listdir(image_dir)

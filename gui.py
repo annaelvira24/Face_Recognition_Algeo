@@ -17,14 +17,7 @@ from tkinter.filedialog import askopenfilename
 from kivy.uix.popup import Popup
 import main
 import io
-
-# from kivy.graphics import Rectangle
-# from kivy.graphics import Color
-
-# Window.size = (700,550)
 sm = ScreenManager(transition=NoTransition())
-#Window.clearcolor = (1, 1, 1, 1)
-
 global filename
 global resultname
 filename = []
@@ -39,7 +32,6 @@ class MyApp (App):
 		sm.add_widget(StartPage(name="start"))
 		sm.add_widget(MethodPage(name="method"))
 		sm.add_widget(ResultPage(name="result"))
-		# print(sm.screen_names)
 		return sm       
 	def exit(self):
 		exit(1)
@@ -51,28 +43,21 @@ class StartPage(Screen):
 	def runMain(self):
 		Tk().withdraw()
 		filename.append(askopenfilename())
-		# print("The location of the file is ")
-		# print(filename)
 		sm.current="method"
-
 
 class MethodPage(Screen):
 	def runCosine(self):
-		temp =main.runWithCosineSim(filename[0])
+		temp = list(main.runWithCosineSim(filename[0]))
+		temp[1] = list(map(lambda x: 100 - x * 100, temp[1]))
 		resultArr.append(temp[0])
 		resultArr.append(temp[1])
-		# resultArr.append()
-		# print(filename[0])
-		# print(x)
-		# resulting.append(main.runWithCosineSim(filename[0]))
-		# print(resulting)
 		sm.current = "result"
 		
 	def runEuclid(self):
-		temp =main.runWithNormEuclid(filename[0])
+		temp = list(main.runWithNormEuclid(filename[0]))
+		temp[1] = list(map(lambda x: 100 - (x/temp[2]) * 100, temp[1]))
 		resultArr.append(temp[0])
 		resultArr.append(temp[1])
-		# print(x)
 		sm.current = "result"
 
 class CreditPage(Screen):
@@ -83,8 +68,10 @@ class CreditPage(Screen):
 class ResultPage(Screen):
 	def on_pre_enter(self, *args):
 		self.ids.upload.source = filename[0]
-		self.ids.compare.source = resultArr[0][i]
-		self.ids.similarity.text = str(resultArr[1][i])
+		self.ids.compare.source = resultArr[0][i] 
+		self.ids.similarity.text = self.ids.similarity.text = "Similiraty\n" +"  "+str(resultArr[1][i])[:5] + "%"
+		self.ids.upload_name.text = filename[0].split("/")[-2][5:]
+		self.ids.compare_name.text = resultArr[0][i].split("/")[-2][5:]
 	def restarting(self):
 		global filename
 		global resultArr
@@ -97,29 +84,30 @@ class ResultPage(Screen):
 		self.ids.restart.size_hint_x= 0
 		self.ids.restart.size_hint_y= 0
 		self.ids.restart.pos_hint={'center_x':0,'center_y':0}		
-		sm.current = "start"
+		self.ids.upload_name.text = filename[0].split("/")[-2][5:]
+		self.ids.compare_name.text = resultArr[0][i].split("/")[-2][5:]
+		sm.current = "start"	
 	def next(self):
 		global i
 		if (i < 9):
 			i +=1
 			self.ids.compare.source = resultArr[0][i]
-			self.ids.similarity.text = str(resultArr[1][i])
+			self.ids.similarity.text = "Similiraty\n" +"  "+str(resultArr[1][i])[:5] + "%"
+			self.ids.upload_name.text = filename[0].split("/")[-2][5:]
+			self.ids.compare_name.text = resultArr[0][i].split("/")[-2][5:]
 		else:
 			self.ids.restart.text="Restart"
 			self.ids.restart.size_hint_x= 0.2
 			self.ids.restart.size_hint_y= 0.1
-			self.ids.restart.pos_hint={'center_x':0.5,'top_y':0.3}
-			self.ids.quit.text="Quit"
-			self.ids.quit.size_hint_x= 0.2
-			self.ids.quit.size_hint_y= 0.1
-			self.ids.quit.pos_hint={'center_x':0.5,'top_y':0.1}
-
+			self.ids.restart.pos_hint={'center_x':0.5,'center_y':0.15}
+			
 	def prev(self):
 		global i
 		if (i >0):
 			i -= 1
 		self.ids.compare.source = resultArr[0][i]
-		self.ids.similarity.text = str(resultArr[1][i])
-
+		self.ids.similarity.text = "Similiraty\n" +"  "+str(resultArr[1][i])[:5] + "%"
+		self.ids.upload_name.text = filename[0].split("/")[-2][5:]
+		self.ids.compare_name.text = resultArr[0][i].split("/")[-2][5:]
 if __name__ == "__main__":
 	MyApp().run() 
