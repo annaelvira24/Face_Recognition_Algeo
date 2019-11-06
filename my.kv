@@ -289,3 +289,13 @@
             valign: 'center'
             text_size: self.size
             on_press: root.restarting()
+        Button:
+            id: quit
+            background_normal: 'ASSETS/button_normal.png'
+            pos_hint: {"center_x":0,"top":0}
+            size_hint:(0,0)
+            halign: 'center'
+            padding_x : 40
+            valign: 'center'
+            text_size: self.size
+            on_press: app.exit()

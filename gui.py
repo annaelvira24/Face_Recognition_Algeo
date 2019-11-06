@@ -98,7 +98,6 @@ class ResultPage(Screen):
 		self.ids.restart.size_hint_y= 0
 		self.ids.restart.pos_hint={'center_x':0,'center_y':0}		
 		sm.current = "start"
-
 	def next(self):
 		global i
 		if (i < 9):
@@ -109,7 +108,12 @@ class ResultPage(Screen):
 			self.ids.restart.text="Restart"
 			self.ids.restart.size_hint_x= 0.2
 			self.ids.restart.size_hint_y= 0.1
-			self.ids.restart.pos_hint={'center_x':0.5,'center_y':0.15}
+			self.ids.restart.pos_hint={'center_x':0.5,'top_y':0.3}
+			self.ids.quit.text="Quit"
+			self.ids.quit.size_hint_x= 0.2
+			self.ids.quit.size_hint_y= 0.1
+			self.ids.quit.pos_hint={'center_x':0.5,'top_y':0.1}
+
 	def prev(self):
 		global i
 		if (i >0):
