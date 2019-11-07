@@ -52,18 +52,26 @@ class StartPage(Screen):
 
 class MethodPage(Screen):
 	def runCosine(self):
-		temp = list(main.runWithCosineSim(filename[0]))
-		temp[1] = list(map(lambda x: 100 - x * 100, temp[1]))
-		resultArr.append(temp[0])
-		resultArr.append(temp[1])
-		sm.current = "result"
+		try:
+			temp = list(main.runWithCosineSim(filename[0]))
+			temp[1] = list(map(lambda x: 100 - x * 100, temp[1]))
+			resultArr.append(temp[0])
+			resultArr.append(temp[1])
+			sm.current = "result"
+		except:
+			print("*METHOD FAILED*")
+			sm.current = "start"
 		
 	def runEuclid(self):
-		temp = list(main.runWithNormEuclid(filename[0]))
-		temp[1] = list(map(lambda x: 100 - (x/temp[2]) * 100, temp[1]))
-		resultArr.append(temp[0])
-		resultArr.append(temp[1])
-		sm.current = "result"
+		try:
+			temp = list(main.runWithNormEuclid(filename[0]))
+			temp[1] = list(map(lambda x: 100 - (x/temp[2]) * 100, temp[1]))
+			resultArr.append(temp[0])
+			resultArr.append(temp[1])
+			sm.current = "result"
+		except:
+			print("*METHOD FAILED*")
+			sm.current = "start"
 
 class CreditPage(Screen):
 	def switch_screen(*args):
