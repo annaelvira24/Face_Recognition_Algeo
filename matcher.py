@@ -42,10 +42,6 @@ class Matcher(object):
 def extract(image_path, vsize=8):
 	#RGB
 	img = cv2.imread(image_path, 1)
-	#if (cv2.countNonZero(cv2.imread(image_path, 0)) < int(img.size*0.7)):
-	#	img = img[int(len(img)*0.05):int(len(img)*0.95), int(len(img[0])*0.05):int(len(img[0])*0.95)]
-	#img = cv2.GaussianBlur(img, (5,5), 0)
-	#img =cv2.resize(img, (img.shape[0], img.shape[1]))
 	kaze = cv2.KAZE_create()
 	kps = kaze.detect(img)
 	kps_temp = sorted(kps, key=lambda x: abs(x.response))[:vsize//2]
@@ -84,5 +80,3 @@ def createDB(db_path="features.pck"):
 			mark += 1
 		i += 1
 	pickle.dump(result, open(db_path, 'wb'))
-
-

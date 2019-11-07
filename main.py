@@ -38,12 +38,12 @@ def testrun():
 def runWithCosineSim(sample):
 	matcher = Matcher(datauji, used_db)
 	names, match = matcher.matchCosine(sample)
-	return names[0:10]
+	return names[0:10], match[0:10]
 
 def runWithNormEuclid(sample):
 	matcher = Matcher(datauji, used_db)
 	names, match = matcher.matchEuclid(sample)
-	return names[0:10]
+	return names[0:10], match[0:10], match[-1]
 
 def pickSamples():
 	paths = os.listdir(image_dir)
@@ -78,6 +78,7 @@ def pickSamples():
 def generateDB(save):
 	if (save):
 		x = "_".join(str(datetime.datetime.now()).split(".")[0].split(" "))
+		x = "_".join(x.split(":"))
 		os.system("mv "+used_db+" "+used_db+x)
 	createDB(used_db)
 
@@ -98,7 +99,7 @@ def accurate():
 		sample = [random.choice(images) for i in range(1)]
 		for s in sample:
 			names, match = matcher.matchCosine(s)
-			if (s[:-13] in names[0]):
+			if (s.split("/")[1] in names[0] or s.split("/")[1] in names[1] or s.split("/")[1] in names[2]):
 				benar += 1
 	print("Tingkat akurasi program dengan cosine similarity: %.2f." % (benar/100))
 
@@ -107,6 +108,6 @@ def accurate():
 		sample = [random.choice(images) for i in range(1)]
 		for s in sample:
 			names, match = matcher.matchEuclid(s)
-			if (s[:-13] in names[0]):
+			if (s.split("/")[1] in names[0] or s.split("/")[1] in names[1] or s.split("/")[1] in names[2]):
 				benar += 1
 	print("Tingkat akurasi program dengan euclidean distance: %.2f." % (benar/100))

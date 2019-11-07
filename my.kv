@@ -1,6 +1,5 @@
 <LandingPage>
     FloatLayout:
-        
         Image:
             source: 'ASSETS/homepage.png'
             keep_ratio: True
@@ -9,67 +8,24 @@
             size_hint: 1, 1
             pos_hint: {'center_x': 0.5, 'center_y': 0.7}
 
-        Button:
-            
+        Button:    
             text: "Getting Started"
             background_normal: 'ASSETS/button_normal.png'
-            #background_color: 0.008, 0.463, 0.694, 0
             size_hint:(0.25,0.1)
             pos_hint: {'center_x': 0.5, 'center_y': 0.35}
-            # canvas.before:
-            #     Color:
-            #         rgba: 0.8, 0.8, 0.8, 1
-            #     RoundedRectangle:
-            #         pos: (self.pos[0]+10,self.pos[1]-10)
-            #         size: (200, 50)
-            #         radius: [16,1,16,1]
-            #     Color:
-            #         rgba: 0, 0.25, 0.5, 1
-            #     RoundedRectangle:
-            #         pos: (self.pos[0],self.pos[1])
-            #         size: (200, 50)
-            #         radius: [16,1,16,1]
             on_press: 
                 root.manager.current='start'
         Button: 
             text: "Credits"
             background_normal: 'ASSETS/button_normal.png'
-            #background_color: 0.008, 0.463, 0.694, 0
             size_hint:(0.25,0.1)
             pos_hint: {'center_x': 0.5, 'center_y': 0.23}
-            # canvas.before:
-            #     Color:
-            #         rgba: 0.8, 0.8, 0.8, 1
-            #     RoundedRectangle:
-            #         pos: (self.pos[0]+10,self.pos[1]-10)
-            #         size: (200, 50)
-            #         radius: [16,1,16,1]
-            #     Color:
-            #         rgba: 0, 0.25, 0.5, 1
-            #     RoundedRectangle:
-            #         pos: (self.pos[0],self.pos[1])
-            #         size: (200, 50)
-            #         radius: [16,1,16,1]
             on_press: root.manager.current='credits'
         Button:
             text : "Quit"
             background_normal: 'ASSETS/button_normal.png'
-            #background_color: 0.008, 0.463, 0.694, 0
             size_hint:(0.25,0.1)
             pos_hint: {'center_x': 0.5, 'center_y': 0.11}
-            # canvas.before:
-            #     Color:
-            #         rgba: 0.8, 0.8, 0.8, 1
-            #     RoundedRectangle:
-            #         pos: (self.pos[0]+10,self.pos[1]-10)
-            #         size: (200, 50)
-            #         radius: [16,1,16,1]
-            #     Color:
-            #         rgba: 0, 0.25, 0.5, 1
-            #     RoundedRectangle:
-            #         pos: (self.pos[0],self.pos[1])
-            #         size: (200, 50)
-            #         radius: [16,1,16,1]
             on_press: app.exit()
 
 <CreditPage>:
@@ -82,40 +38,38 @@
                 
         Label:
             text:"Credits By"
-            pos_hint: {'center_x':.5, "top":0.8}
+            pos_hint: {'center_x': 0.5, "top":1}
             size_hint: 0.4, 0.2
             font_size: 30
             
+        Image:
+            source: 'ASSETS/group_pic.jpg'
+            keep_ratio: True
+            allow_stretch: True
+            opacity: 0.6
+            size_hint: 0.6, 0.6
+            pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+
         Label:
-            text:"Anna Elvira / 13518045"
-            pos_hint: {'center_x':.5, "top":0.6}
+            text:"Anna Elvira            /   13518045"
+            pos_hint: {'center_x': 0.5, "top":0.4}
             size_hint: 0.35, 0.10
         Label: 
-            text:"Yonatan Viody/ 13518120"
-            pos_hint: {'center_x':.5,"top":0.55}
+            text:"Yonatan Viody     /   13518120"
+            pos_hint: {'center_x': 0.5,"top":0.35}
             size_hint: 0.35, 0.10
         Label:
-            text:"Stephen Thajeb / 13518150"
-            pos_hint: {'center_x':.5,"top":0.5}
+            text:"Stephen Thajeb    /   13518150"
+            pos_hint: {'center_x': 0.5,"top":0.3}
             size_hint: 0.35, 0.10
 
-        
 
         Button:
             text:"Back"
             text_color: 0.741, 0.898, 1, 1
             pos_hint: {"x":0.1,"top":0.2}
             background_normal: 'ASSETS/button_normal.png'
-            #background_color: 0.008, 0.463, 0.694, 0
             size_hint:(0.25,0.1)
-            # canvas.before:
-            #     Color:
-            #         rgba: 0.8, 0.8, 0.8, 1
-            #     Rectangle:
-            #         pos: (self.pos[0]+10,self.pos[1]-10)
-            #         size: (200, 50)
-
-
             on_press: root.manager.current='landing'
 
 <StartPage>:
@@ -137,6 +91,7 @@
                     pos: (self.pos)
                     size: (self.size)
                     radius: [5,5,5,5]
+
         Image:
             source: 'ASSETS/choose.png'
             keep_ratio: True
@@ -144,38 +99,21 @@
             opacity: 0.8
             size_hint: 0.38,0.38
             pos_hint: {'center_x': 0.5, 'top': 0.75}
-            
 
-        # TextInput:
-        #     pos_hint: {"x":0.3, "top":0.6}
-        #     size_hint: 0.4, 0.05
-        #     id: filename 
-        #     # multiline: False
-        #     hint_text:"filename.jpg/.png"
-
-        # Image:
-        #     id: real
-        #     source: ''
-        #     allow_stretch: True
-        # Image:
-        #     id: compared
-        #     source: ''
-        #     allow_stretch: True
         Button:
             text:"Back"
             background_normal: 'ASSETS/button_normal.png'
-            #background_color: 0.008, 0.463, 0.694, 0
-            pos_hint: {"x":0.25,"top":0.3}
+            pos_hint: {"x":0.20,"top":0.3}
             size_hint:(0.25,0.1)
             on_press: root.manager.current='landing'
 
         Button:
             text:"Browse File"
             background_normal: 'ASSETS/button_normal.png'
-            #background_color: 0.008, 0.463, 0.694, 0
             pos_hint: {"x":0.55, "top":0.3}
             size_hint:(0.25,0.1)
             on_press: root.runMain()
+            
         
 <MethodPage>:
     FloatLayout:
@@ -200,21 +138,106 @@
             source: 'ASSETS/calculate.png'
             keep_ratio: True
             allow_stretch: True
-            opacity: 0.6
+            opacity: 0.8
             size_hint: 0.38,0.38
             pos_hint: {'center_x': 0.5, 'top': 0.75}
             
         Button:
             text:"Euclidean Distance"
             background_normal: 'ASSETS/button_normal.png'
-            pos_hint: {"x":0.25,"top":0.3}
+            pos_hint: {"x":0.20,"top":0.3}
             size_hint:(0.25,0.1)
-#            on_press: root.manager.current='landing'
-
+            on_press: root.runEuclid()
         Button:
             text:"Cosine Similarity"
             background_normal: 'ASSETS/button_normal.png'
             pos_hint: {"x":0.55, "top":0.3}
             size_hint:(0.25,0.1)
-#            on_press: root.runMain()
+            on_press: root.runCosine()
 
+<ResultPage>
+    FloatLayout:
+        canvas.before:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: 'ASSETS/background2.png'
+        Label:
+            text:"RESULTS"
+            pos_hint: {'center_x': 0.5, "top":0.9}
+            size_hint: 0.4, 0.05
+            font_size: 20
+            canvas.before:
+                Color:
+                    rgba: 0, 0.067, 0.5, 1
+                RoundedRectangle:
+                    pos: (self.pos)
+                    size: (self.size)
+                    radius: [5,5,5,5]
+        Label:
+            id:similarity
+            pos_hint: {'center_x': 0.5, "top":0.7}
+            size_hint: 0.4, 0.05
+            font_size: 20
+        Label:
+            id:upload_name
+            pos_hint: {'center_x': 0.25, "top":0.82}
+            size_hint: 0.4, 0.05
+            font_size: 20    
+        Label:
+            id:compare_name
+            pos_hint: {'center_x': 0.75, "top":0.82}
+            size_hint: 0.4, 0.05
+            font_size: 20
+        Image:
+            id : upload
+            keep_ratio: True
+            allow_stretch: False
+            size_hint: 0.4, 0.4
+            pos_hint: {'center_x': 0.25, 'top': 0.75}
+            canvas.after:
+                BorderImage:
+                    size : (self.width-27, self.height + 50)
+                    pos : (self.x+15, self.y-25)
+                    source: 'ASSETS/frame.png'
+        Image:
+            id : compare
+            keep_ratio: True
+            allow_stretch: False
+            size_hint: 0.4, 0.4
+            pos_hint: {'center_x': 0.75, 'top': 0.75}
+            canvas.after:
+                BorderImage:
+                    size : (self.width-27, self.height + 50)
+                    pos : (self.x+15, self.y-25)
+                    source: 'ASSETS/frame.png'
+        Button:
+            text:"Next"
+            background_normal: 'ASSETS/button-3.png'
+            pos_hint: {"center_x":0.8,"top":0.2}
+            size_hint:(0.2,0.1)
+            halign: 'left'
+            padding_x : 40
+            valign: 'center'
+            text_size: self.size
+            on_press: root.next()
+        Button:
+            text:"Prev"
+            background_normal: 'ASSETS/button-2.png'
+            pos_hint: {"center_x":0.2,"top":0.2}
+            size_hint:(0.2,0.1)
+            halign: 'right'
+            padding_x : 40
+            valign: 'center'
+            text_size: self.size
+            on_press: root.prev()
+        Button:
+            id: restart
+            background_normal: 'ASSETS/button_normal.png'
+            pos_hint: {"center_x":0,"top":0}
+            size_hint:(0,0)
+            halign: 'center'
+            padding_x : 40
+            valign: 'center'
+            text_size: self.size
+            on_press: root.restarting()

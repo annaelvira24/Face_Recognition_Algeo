@@ -3,7 +3,10 @@ import sys
 import os
 
 def errormsg():
-	print("Use 'python3 startapp.py <command>'")
+	if (os.name == 'nt'):
+		print("Use 'python startapp.py <command>'")
+	else:
+		print("Use 'python3 startapp.py <command>'")
 	print(
 '''
 Available commands:
@@ -18,7 +21,10 @@ Available commands:
 
 if (len(sys.argv) > 1):
 	if (sys.argv[1] == "run"):
-		os.system("python3 gui.py")
+		if (os.name == 'nt'):
+			os.system("python gui.py")
+		else:
+			os.system("python3 gui.py")
 	elif (sys.argv[1] == "test-accuracy"):
 		accurate()
 	elif (sys.argv[1] == "test-image"):
