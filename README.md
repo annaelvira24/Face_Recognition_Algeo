@@ -2,11 +2,20 @@
 Halo, kami dari kelompok YouIYouX dan ini adalah hasil pengerjaan tugas besar 2 mata kuliah aljabar linear dan geometri.
 
 ## Installation
-Download python3 dan pip dari website resmi python, lalu download database gambar yang disebutkan pada spesifikasi tugas. Ubah nama folder PINS menjadi PICS, dan pastikan Anda sudah men-delete folder PINS yang ada di dalamnya. Jika Anda ingin menambahkan foto, buat folder untuk gambar orang tersebut pada folder PICS dengan format "pin_<nama_orang>" dan masukkan fotonya di dalam folder itu. Jangan lupa untuk membuat folder DB untuk database hasil ekstraksi nantinya.
+Download python3 dan pip dari website resmi python, lalu download database gambar yang disebutkan pada spesifikasi tugas. Ubah nama folder PINS menjadi PICS, dan pastikan Anda sudah men-delete folder PINS yang ada di dalamnya. Jika Anda ingin menambahkan foto, buat folder untuk gambar orang tersebut pada folder PICS dengan format "pins_<nama_orang>" dan masukkan fotonya di dalam folder itu. Jangan lupa untuk membuat folder DB untuk database hasil ekstraksi nantinya.
 
 Lalu setelah folder PICS dan DB sudah siap, lakukan random sampling dengan cara yang disebutkan di bawah. Dari random sampling, akan dibuat 2 folder baru (atau di-delete dan dibuat baru), yaitu DataSet yang berisi folder gambar orang untuk referensi dan DataUji yang berisi folder gambar orang untuk pengujian, dengan rasio sesuai spesifikasi tugas. Kemudian, lakukan generate database (DB) dengan cara yang disebutkan di bawah untuk membuat database hasil ekstraksi pada DB/final.
 
 Sekarang dengan data referensi, data uji, dan database yang sudah tersedia, Anda dapat melakukan tes akurasi, tes uji gambar, atau menampilkan GUI utama untuk melakukan face recognization sesuai keinginan Anda.
+
+Intinya adalah:
+- Download python3 dan library yang dibutuhkan pada bagian bawah.
+- Download database dari kaggle sesuai spesifikasi, ekstrak ke lokasi src, ubah nama folder PINS menjadi PICS dan delete folder PINS yang ada di dalam folder tersebut.
+- Jika ingin menambahkan sendiri, buat folder PICS di src, lalu buat folder dengan format "pins_<nama_orang>" di dalamnya untuk masing-masing orang, lalu masukkan gambar.
+- Buat folder DB.
+- Lakukan random sampling.
+- Generate database.
+- Program siap dijalankan.
 
 ## Usage
 ### Cara menampilkan command
